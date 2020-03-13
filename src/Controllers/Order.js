@@ -98,7 +98,7 @@ class Order {
             transaction.billingAddress
           );
           const message = `
-            Hello ${user.lname},
+            Hello ${username},
               We have processed your order. Please visit the following link to review your order
               <a href="https://tarpit.com/orders/${username}?ref=mail&transactionId=${transactionId}}">Review Order</a>
           `;
