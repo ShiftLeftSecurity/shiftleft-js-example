@@ -35,7 +35,7 @@ jobs:
       run: |
         URL="https://www.shiftleft.io/violationlist/ShiftLeftJS?apps=ShiftLeftJS&isApp=1"
         GH_CHECK_URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/check-runs"
-        sl check-analysis --app ShiftLeftJS --branch ${GITHUB_REF}
+        ${GITHUB_WORKSPACE}/sl check-analysis --app ShiftLeftJS --branch ${GITHUB_REF}
         curl -XPOST $GH_CHECK_URL -H "Authorization: Token ${GITHUB_TOKEN}" -H "accept: application/vnd.github.antiope-preview+json" -H "Content-Type: application/json" -d "{\"name\": \"ShiftLeft Inspect\", \"head_sha\": \"${GITHUB_REF}\", \"external_id\": \"ShiftLeftJS\", \"details_url\": \"${URL}\", \"status\": \"completed\", \"conclusion\": \"action_required\", \"output\": {\"title\": \"ShiftLeft Inspect Findings\", \"summary\": \"Visit ${URL} for the findings\"}}"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
