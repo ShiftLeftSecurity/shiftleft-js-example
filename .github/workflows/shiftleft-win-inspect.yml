@@ -1,6 +1,6 @@
 # This workflow integrates ShiftLeft Inspect with GitHub
 # Visit https://docs.shiftleft.io for help
-name: Analyze with ShiftLeft Inspect
+name: Analyze with ShiftLeft Inspect on Windows
 
 on:
   push:
@@ -13,7 +13,7 @@ on:
       - master
 
 jobs:
-  Inspect-Build:
+  Inspect-Win-Build:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
