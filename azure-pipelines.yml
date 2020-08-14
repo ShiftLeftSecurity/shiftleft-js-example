@@ -1,0 +1,27 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '12.x'
+  displayName: 'Install Node.js'
+
+- task: CmdLine@2
+  displayName: Download ShiftLeft cli
+  inputs:
+    script: |
+      curl https://cdn.shiftleft.io/download/sl > $(Agent.HomeDirectory)/sl && chmod a+rx $(Agent.HomeDirectory)/sl
+
+- task: CmdLine@2
+  displayName: Analyze with NG SAST
+  inputs:
+    script: |
+      $(Agent.HomeDirectory)/sl analyze --wait --app ShiftLeftJSAzure --tag branch=$(Build.SourceBranchName) --js --cpg .
+    workingDirectory: '$(Build.SourcesDirectory)'
+  env:
+    SHIFTLEFT_ORG_ID: $(SHIFTLEFT_ORG_ID)
+    SHIFTLEFT_ACCESS_TOKEN: $(SHIFTLEFT_ACCESS_TOKEN)
