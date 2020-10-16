@@ -4,6 +4,7 @@ name: Analyze with ShiftLeft Inspect
 
 on:
   pull_request:
+  workflow_dispatch:
 
 jobs:
   Inspect-Build:
