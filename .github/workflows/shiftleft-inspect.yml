@@ -9,8 +9,6 @@ on:
 jobs:
   Inspect-Build:
     runs-on: ubuntu-latest
-    container: 
-      image: node:12
     steps:
     - uses: actions/checkout@v2
     - name: Download ShiftLeft cli
@@ -23,7 +21,7 @@ jobs:
       with:
         java-version: 1.8
     - name: Analyze with Inspect
-      run: ${GITHUB_WORKSPACE}/sl analyze --verbose --app ShiftLeftJS-12 --tag branch=${GITHUB_REF} --js --cpg .
+      run: ${GITHUB_WORKSPACE}/sl analyze --verbose --app ShiftLeftJS-12 --tag branch=${GITHUB_REF} --js --cpg . -- --exclude ${GITHUB_WORKSPACE}/src/Logger
       env:
         SHIFTLEFT_ORG_ID: ${{ secrets.SHIFTLEFT_ORG_ID }}
         SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
