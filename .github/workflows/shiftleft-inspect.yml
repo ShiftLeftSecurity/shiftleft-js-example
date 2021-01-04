@@ -23,7 +23,7 @@ jobs:
       with:
         java-version: 1.8
     - name: Analyze with Inspect
-      run: ${GITHUB_WORKSPACE}/sl analyze --verbose --app ShiftLeftJS-12 --tag branch=${GITHUB_REF} --js --cpg . -- --exclude src/Logger --no-babel --no-ts
+      run: ${GITHUB_WORKSPACE}/sl analyze --verbose --app ShiftLeftJS-12 --tag branch=${GITHUB_REF} --js --cpg . -- --exclude /__w/shiftleft-js-example/shiftleft-js-example/src/Logger
       env:
         SHIFTLEFT_ORG_ID: ${{ secrets.SHIFTLEFT_ORG_ID }}
         SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
