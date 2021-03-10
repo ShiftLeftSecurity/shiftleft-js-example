@@ -1,0 +1,22 @@
+inspect:
+- app:
+    name: shiftleft-js-example
+    modify-findings:
+      - trust_sink_log
+
+finding-modifications:
+  trust_sink_log:
+    # Use filter to specify the sink method
+    filter:
+      tags:
+        sink_method:
+          - "^__whatwg.console^.log"
+    # Specify the value for the tags such as cvss_score, severity that you would like to use
+    # Optionally, you can add any custom tag. Eg: a reason tag is added here
+    tags:
+      - key: cvss_score
+        value: 5
+      - key: severity
+        value: info
+      - key: reason
+        value: trusted_sink
