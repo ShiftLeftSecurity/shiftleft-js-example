@@ -1,6 +1,6 @@
 # This workflow integrates ShiftLeft Inspect with GitHub
 # Visit https://docs.shiftleft.io for help
-name: Analyze with ShiftLeft Inspect on Windows
+name: Analyze with ShiftLeft
 
 on:
   pull_request:
@@ -21,7 +21,7 @@ jobs:
       uses: actions/setup-java@v1.4.3
       with:
         java-version: 1.8
-    - name: Analyze with Inspect
+    - name: Analyze
       run: .\sl analyze --no-diagnostic --force --app ShiftLeftJSWin --tag branch=${GITHUB_REF} --js --cpg .
       env:
         SHIFTLEFT_ORG_ID: ${{ secrets.SHIFTLEFT_ORG_ID }}
