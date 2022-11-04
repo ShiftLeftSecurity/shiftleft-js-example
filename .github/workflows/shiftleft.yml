@@ -26,6 +26,6 @@ jobs:
         SHIFTLEFT_ORG_ID: ${{ secrets.SHIFTLEFT_ORG_ID }}
         SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
     - name: Check Analysis with BuildRule
-      run: sl check-analysis --app TestJS --v2 --config ${GITHUB_WORKSPACE}/shiftleft.yml
+      run: ${GITHUB_WORKSPACE}/sl check-analysis --app TestJS --v2 --config ${GITHUB_WORKSPACE}/shiftleft.yml
       env:
           SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
