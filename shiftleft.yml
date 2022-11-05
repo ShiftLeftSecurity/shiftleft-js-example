@@ -8,4 +8,4 @@ build_rules:
     severity:
       - SEVERITY_MEDIUM_IMPACT
       - SEVERITY_HIGH_IMPACT
-    threshold: 1
+    threshold: 2
