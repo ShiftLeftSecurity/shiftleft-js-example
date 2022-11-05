@@ -21,7 +21,11 @@ jobs:
       with:
         java-version: 1.8
     - name: Analyze
-      run: ${GITHUB_WORKSPACE}/sl analyze --no-diagnostic --force --app ShiftLeftJS --tag branch=${GITHUB_REF} --js --cpg .
+      run: ${GITHUB_WORKSPACE}/sl analyze --no-diagnostic --force --app TestJS --tag app.group=GitHubTest --js --cpg .
       env:
         SHIFTLEFT_ORG_ID: ${{ secrets.SHIFTLEFT_ORG_ID }}
         SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
+    - name: Check Analysis with BuildRule
+      run: ${GITHUB_WORKSPACE}/sl check-analysis --app TestJS --v2 --config ${GITHUB_WORKSPACE}/shiftleft.yml
+      env:
+          SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
